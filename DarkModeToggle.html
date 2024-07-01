@@ -1,0 +1,53 @@
+<div id="darkModeToggle" class="float-button">
+  <button onclick="toggleDarkMode()">🌓</button>
+</div>
+
+<style>
+  .float-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .float-button button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    cursor: pointer;
+    font-size: 24px;
+    transition: background-color 0.3s;
+  }
+  
+  .float-button button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  body.dark-mode {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .dark-mode .float-button button {
+    background-color: #555;
+    color: #fff;
+  }
+</style>
+
+<script>
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+  }
+  
+  window.onload = function() {
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    }
+  }
+</script>
